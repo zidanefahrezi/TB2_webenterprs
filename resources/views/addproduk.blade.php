@@ -13,11 +13,16 @@
     <div class="sidebar">
         <h2>Dashboard Penjualan</h2>
         <ul>
-            <li><a href="{{ url('contoh') }}">Home</a></li>
-            <li><a href="{{ url('produk') }}">Produk</a></li>
+            <li><a href="{{ url(Auth::user()->role.'/home') }}">Home</a></li>
+            <li><a href="{{ url(Auth::user()->role.'/produk') }}">Produk</a></li>
             <li><a href="#">Penjualan</a></li>
-            <li><a href="#">Laporan</a></li>
-            <li><a href="#">Pengaturan</a></li>
+            <li><a href="{{ url(Auth::user()->role.'/laporan') }}">Laporan</a></li>
+            <li>
+            <form action="{{ url('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="text-decoration-none bg-transparent border-0 text-white" style="font-size: 18px;">Logout</button>
+            </form>
+            </li>
         </ul>
     </div>
 
@@ -34,7 +39,7 @@
             <div class="container">
                 <h1>CREATE PRODUCT</h1>
 
-                <form action="{{url('/produk/add')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{ url(Auth::user()->role.'/produk/add') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="nama_produk">Nama Produk</label>

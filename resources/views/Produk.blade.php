@@ -13,11 +13,17 @@
     <div class="sidebar">
         <h2>Dashboard Penjualan</h2>
         <ul>
-            <li><a href="{{ url('contoh') }}">Home</a></li>
-            <li><a href="{{ url('produk') }}">Produk</a></li>
+            <li><a href="{{ url(Auth::user()->role . '/home') }}">Home</a></li>
+            <li><a href="{{ url(Auth::user()->role . '/produk') }}">Produk</a></li>
             <li><a href="#">Penjualan</a></li>
-            <li><a href="#">Laporan</a></li>
-            <li><a href="#">Pengaturan</a></li>
+            <li><a href="{{ url(Auth::user()->role . '/laporan') }}">Laporan</a></li>
+            <li>
+                <form action="{{ url('/logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="text-decoration-none bg-transparent border-0 text-white"
+                        style="font-size: 18px;">Logout</button>
+                </form>
+            </li>
         </ul>
     </div>
 
@@ -26,8 +32,9 @@
         <!-- Header -->
         <header style="display: flex; justify-content:space-between">
             <h1>Daftar Produk</h1>
+
             <div>
-            <button class="card-button" style="background-color: #3498db;"><a class="text-decoration-none text-white" href="{{ url('/produk/add') }}">Add Product</a></button>
+                <button class="card-button"><a class="text-decoration-none text-wh" href="{{ url(Auth::user()->role . '/produk/add') }}">Add Product</a></button>
             </div>
         </header>
         <h6>Temukan produk terbaik untuk kebutuhan Anda</h6>
@@ -36,7 +43,7 @@
         <div class="product-grid">
             <!-- product card 1 -->
             @foreach ($produk as $item)
-                
+
             <div class="product-card">
                 <img src="{{ url('storage/public/images/' . $item->image) }}" alt="produk 1">
                 <h3>{{ $item->nama_produk }}</h3>
