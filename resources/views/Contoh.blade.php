@@ -31,7 +31,7 @@
     <!-- Main Content -->
     <div class="main-content">
         <header style="display: flex; justify-content:space-between">
-            <h1>Selamat Datang di Dashboard Penjualan</h1>
+            <h1>Selamat Datang di Toko Reza</h1>
         </header>
 
         <!-- Stats Cards -->
@@ -68,6 +68,9 @@
 
     <script src="{{ $chart->cdn()}}"></script>
     {{$chart->script()}}
+    <footer>
+        <p>&copy; 2024 APlikasi Penjualan. All rights reserved.</p>
+    </footer>
+</div>
 </body>
-
 </html>
